@@ -8,16 +8,22 @@ type RestaurantCardProps = {
 export function RestaurantCard({ restaurant }: RestaurantCardProps) {
   return (
     <Card>
-      <Cover src={restaurant.image} alt={`Prato do restaurante ${restaurant.name}`} />
+      <Cover src={restaurant.capa} alt={`Prato do restaurante ${restaurant.titulo}`} />
+
       <Tags>
-        {restaurant.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+        {restaurant.destacado && <Tag>Destaque da semana</Tag>}
+        <Tag>{restaurant.tipo}</Tag>
       </Tags>
+
       <Content>
         <TitleRow>
-          <Title>{restaurant.name}</Title>
-          <Rating aria-label={`Nota ${restaurant.rating}`}>{restaurant.rating.toFixed(1)}</Rating>
+          <Title>{restaurant.titulo}</Title>
+          <Rating aria-label={`Nota ${restaurant.avaliacao}`}>
+            {restaurant.avaliacao.toFixed(1)}
+          </Rating>
         </TitleRow>
-        <Description>{restaurant.description}</Description>
+
+        <Description>{restaurant.descricao}</Description>
         <MoreLink to={`/restaurante/${restaurant.id}`}>Saiba mais</MoreLink>
       </Content>
     </Card>

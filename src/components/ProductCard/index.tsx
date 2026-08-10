@@ -3,15 +3,18 @@ import { AddButton, Card, Description, Image, Title } from './styles'
 
 type ProductCardProps = {
   dish: Dish
+  onOpen: (dish: Dish) => void
 }
 
-export function ProductCard({ dish }: ProductCardProps) {
+export function ProductCard({ dish, onOpen }: ProductCardProps) {
   return (
     <Card>
-      <Image src={dish.image} alt={dish.name} />
-      <Title>{dish.name}</Title>
-      <Description>{dish.description}</Description>
-      <AddButton>Adicionar ao carrinho</AddButton>
+      <Image src={dish.foto} alt={dish.nome} />
+      <Title>{dish.nome}</Title>
+      <Description>{dish.descricao}</Description>
+      <AddButton type="button" onClick={() => onOpen(dish)}>
+        Adicionar ao carrinho
+      </AddButton>
     </Card>
   )
 }

@@ -22,6 +22,7 @@ export const HeroContent = styled.div`
 export const Category = styled.p`
   font-size: 32px;
   font-weight: 300;
+  text-transform: capitalize;
 `
 
 export const RestaurantName = styled.h1`
@@ -45,4 +46,25 @@ export const ProductGrid = styled.div`
   @media (max-width: 580px) {
     grid-template-columns: 1fr;
   }
+`
+
+export const StatusMessage = styled.div`
+  width: min(100% - 32px, ${({ theme }) => theme.container});
+  min-height: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  font-size: 18px;
+`
+
+export const RetryButton = styled.button`
+  border: 0;
+  padding: 10px 16px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.cream};
+  font-weight: 700;
 `

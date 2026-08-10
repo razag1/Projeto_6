@@ -21,14 +21,18 @@ export const Title = styled.h3`
 `
 
 export const Description = styled.p`
+  display: -webkit-box;
   flex: 1;
   margin-bottom: 12px;
+  overflow: hidden;
   line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 `
 
-export const AddButton = styled.span`
-  display: block;
+export const AddButton = styled.button`
   width: 100%;
+  border: 0;
   padding: 8px 12px;
   background: ${({ theme }) => theme.colors.cream};
   color: ${({ theme }) => theme.colors.primary};

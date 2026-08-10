@@ -1,18 +1,19 @@
 export type Dish = {
+  foto: string
+  preco: number
   id: number
-  name: string
-  description: string
-  image: string
+  nome: string
+  descricao: string
+  porcao: string
 }
 
 export type Restaurant = {
   id: number
-  name: string
-  category: string
-  rating: number
-  description: string
-  image: string
-  heroImage: string
-  tags: string[]
-  menu: Dish[]
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: Dish[]
 }
