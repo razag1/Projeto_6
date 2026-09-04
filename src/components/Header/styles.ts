@@ -57,8 +57,10 @@ export const NavLink = styled(Link)`
   }
 `
 
-export const CartStatus = styled.span`
+export const CartStatus = styled.button`
   justify-self: end;
+  border: 0;
+  background: transparent;
   color: ${({ theme }) => theme.colors.primary};
   font-size: 18px;
   font-weight: 900;

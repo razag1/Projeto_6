@@ -73,8 +73,9 @@ export const Portion = styled.p`
   margin-bottom: 16px;
 `
 
-export const ActionLabel = styled.span`
+export const ActionButton = styled.button`
   display: inline-block;
+  border: 0;
   padding: 8px 12px;
   background: ${({ theme }) => theme.colors.cream};
   color: ${({ theme }) => theme.colors.primary};

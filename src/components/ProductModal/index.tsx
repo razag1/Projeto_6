@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
+import { useAppDispatch } from '../../store/hooks'
+import { addToCart, openCart } from '../../store/reducers/cart'
 import type { Dish } from '../../types'
 import { formatCurrency } from '../../utils/formatCurrency'
 import {
-  ActionLabel,
+  ActionButton,
   CloseButton,
   Content,
   Description,
@@ -20,6 +22,8 @@ type ProductModalProps = {
 }
 
 export function ProductModal({ dish, onClose }: ProductModalProps) {
+  const dispatch = useAppDispatch()
+
   useEffect(() => {
     if (!dish) return
 
@@ -42,6 +46,14 @@ export function ProductModal({ dish, onClose }: ProductModalProps) {
 
   if (!dish) return null
 
+  const currentDish = dish
+
+  function handleAddToCart() {
+    dispatch(addToCart(currentDish))
+    onClose()
+    dispatch(openCart())
+  }
+
   return (
     <Overlay
       role="presentation"
@@ -51,25 +63,21 @@ export function ProductModal({ dish, onClose }: ProductModalProps) {
         }
       }}
     >
-      <Dialog
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="product-modal-title"
-      >
+      <Dialog role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
         <CloseButton type="button" onClick={onClose} aria-label="Fechar detalhes do produto">
           <i className="bi bi-x-lg" aria-hidden="true" />
         </CloseButton>
 
         <Content>
-          <DishImage src={dish.foto} alt={dish.nome} />
+          <DishImage src={currentDish.foto} alt={currentDish.nome} />
 
           <DishInfo>
-            <Title id="product-modal-title">{dish.nome}</Title>
-            <Description>{dish.descricao}</Description>
-            <Portion>Serve: {dish.porcao}</Portion>
-            <ActionLabel>
-              Adicionar ao carrinho - {formatCurrency(dish.preco)}
-            </ActionLabel>
+            <Title id="product-modal-title">{currentDish.nome}</Title>
+            <Description>{currentDish.descricao}</Description>
+            <Portion>Serve: {currentDish.porcao}</Portion>
+            <ActionButton type="button" onClick={handleAddToCart}>
+              Adicionar ao carrinho - {formatCurrency(currentDish.preco)}
+            </ActionButton>
           </DishInfo>
         </Content>
       </Dialog>
